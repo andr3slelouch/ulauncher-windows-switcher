@@ -1,9 +1,11 @@
+import gi
+gi.require_version('Gtk', '3.0')
+gi.require_version('Wnck', '3.0')
 from gi.repository import Wnck
 from gi.repository import Gtk
 import hashlib
 import os
 import time
-import gi
 from ulauncher.api.client.EventListener import EventListener
 from ulauncher.api.client.Extension import Extension
 from ulauncher.api.shared.action.ExtensionCustomAction import ExtensionCustomAction
@@ -11,9 +13,6 @@ from ulauncher.api.shared.action.RenderResultListAction import RenderResultListA
 from ulauncher.api.shared.event import ItemEnterEvent, KeywordQueryEvent
 from ulauncher.api.shared.item.ExtensionResultItem import ExtensionResultItem
 
-
-gi.require_version('Gtk', '3.0')
-gi.require_version('Wnck', '3.0')
 
 XDG_FALLBACK = os.path.join(os.getenv('HOME'), '.cache')
 XDG_CACHE = os.getenv('XDG_CACHE_HOME', XDG_FALLBACK)
@@ -39,9 +38,9 @@ def activate(window):
     workspace = window.get_workspace()
     if workspace is not None:
         # We need to first activate the workspace, otherwise windows on a different workspace might not become visible
-        workspace.activate(int(time.time()))
+        workspace.activate(1)
 
-    window.activate(int(time.time()))
+    window.activate(1)
 
 
 class WindowItem:
